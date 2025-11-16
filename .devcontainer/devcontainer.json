@@ -1,0 +1,21 @@
+{
+  "name": "Next.js Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "postCreateCommand": "npm install",
+  "remoteUser": "node",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}
