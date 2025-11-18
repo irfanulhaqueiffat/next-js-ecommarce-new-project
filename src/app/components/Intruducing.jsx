@@ -1,41 +1,116 @@
-import React from 'react'
-import image from '../../../public/images/Products(1).png'
-import Image from 'next/image'
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import ProductCart from './ProductCart'
 
 const Intruducing = () => {
+  const [allproducts, setAllProducts] = useState([])
+  const [categories, setCategories] = useState([])
+  const [activeFilter, setActiveFilter] = useState("All")
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('https://dummyjson.com/products')
+
+        if (!res.ok) {
+          throw new Error('Failed to load products')
+        }
+
+        const data = await res.json()
+        setAllProducts(data.products)
+
+        // extract categories dynamically
+        const cats = [...new Set(data.products.map((p) => p.category))]
+        setCategories(cats)
+
+      } catch (err) {
+        setError(err.message || 'Something went wrong')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
+  // 🔥 Filter logic
+  const filteredProducts =
+    activeFilter === "All"
+      ? allproducts
+      : allproducts.filter((p) => p.category === activeFilter)
+
+  // Shudhu 6 ta see
+  const visibleProducts = filteredProducts.slice(0, 6)
+
   return (
-    <>
-    <section id='intruduce' className='bg-[#EDF2EE] py-25'>
-        <div className="container mx-auto ">
-            <h1 className=' flex m-auto justify-center items-center text-md font-bold text-4xl'>Introducing Our Products</h1>
-            <div className='flex justify-center items-center gap-[10px] mb-15 mt-[30px]'>
-                <p   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >All</p>
-                <span   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >|</span>
-                <p   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >Vegetable</p>
-                <span   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >|</span>
-                <p   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >Fruit</p>
-                <span   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >|</span>
-                <p   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >Meat & Fish</p>
-                <span   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >|</span>
-                <p   className='text-[#808080] text-sm font-normal hover:text-[#20B526]'  >View All</p>
-            </div>
+    <section id="intruduce" className="bg-[#EDF2EE] py-25">
+      <div className="container mx-auto">
+
+        <h1 className="flex justify-center items-center text-4xl font-bold">
+          Introducing Our Products
+        </h1>
+
+        {/* 🔥 Dynamic Filter Menu */}
+        <div className="flex justify-center flex-wrap gap-4 mt-8 mb-10">
           
+          {/* All button */}
+          <button
+            onClick={() => setActiveFilter("All")}
+            className={`
+              text-sm font-medium px-3 py-1
+              ${activeFilter === "All"
+                ? "text-[#20B526]"
+                : "text-[#808080] hover:text-[#20B526]"
+              }
+            `}
+          >
+            All
+          </button>
 
-            <Image className='flex justify-center m-auto mb-25 ' src={image} width={800} height={500}  />
-
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveFilter(cat)}
+              className={`
+                text-sm font-medium px-3 py-1 capitalize
+                ${activeFilter === cat
+                  ? "text-[#20B526]"
+                  : "text-[#808080] hover:text-[#20B526]"
+                }
+              `}
+            >
+              {cat.replace('-', ' ')}
+            </button>
+          ))}
         </div>
+
+        {/* Loading & Error */}
+        {loading && (
+          <p className="text-center text-sm text-gray-500">Loading products...</p>
+        )}
+
+        {error && (
+          <p className="text-center text-sm text-red-500">{error}</p>
+        )}
+
+        {/* 🔥 Products */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleProducts.map((product) => (
+            <ProductCart key={product.id} product={product} />
+          ))}
+
+          {!loading && visibleProducts.length === 0 && (
+            <p className="col-span-full text-center text-gray-500">
+              No products found for this category.
+            </p>
+          )}
+        </div>
+
+      </div>
     </section>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </>
   )
 }
 

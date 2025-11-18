@@ -9,10 +9,10 @@ const ShopNow = () => {
     <>
     <section id='shopNow' className='mt-52'>
         <div className="container">
-            <div className=' flex gap-6 m-25'>
-                <Image src={shp1} width={424} height={225}/>
-                <Image src={shp2} width={424} height={225}/>
-                <Image src={shp3} width={424} height={225}/>
+            <div className=' flex gap-6 m-25  '>
+                <Image src={shp1} alt='shopeimgs'  width={424} height={225}/>
+                <Image src={shp2} alt='shopeimgs'  width={424} height={225}/>
+                <Image src={shp3} alt='shopeimgs'  width={424} height={225}/>
 
             </div>
         </div>

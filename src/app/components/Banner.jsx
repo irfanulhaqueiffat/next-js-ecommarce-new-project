@@ -13,7 +13,7 @@ const Banner = () => {
 
 <div className="banner-content flex justify-between items-center">
 <div className="banner-img">
-    <Image src={stimg} width={795} height={594}/>
+    <Image src={stimg} alt='bannerimg' width={795} height={594}/>
 </div>
 <div className="contant-part ">
     <p className='text-sm text-green-500 font-normal mb-2'>
