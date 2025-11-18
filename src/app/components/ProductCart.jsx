@@ -1,34 +1,46 @@
 import React from 'react'
 import Image from 'next/image'
-import fallbackImage from '../../../public/images/Products(1).png' // path tui project onujayi set korbi
+import fallbackImage from '../../../public/images/Products(1).png'
 
 const ProductCart = ({ product }) => {
   if (!product) return null
 
-  const { name, price, category, image } = product
+  // DummyJSON fields
+  const {
+    title,
+    price,
+    category,
+    images,
+    thumbnail
+  } = product
+
+  // Image priority:
+  // 1. API "images[0]"
+  // 2. API "thumbnail"
+  // 3. fallback image
+  const productImage = images?.[0] || thumbnail || fallbackImage
 
   return (
     <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition duration-200">
+      
       {/* Image */}
       <div className="w-full h-48 relative mb-3">
         <Image
-          src={image || fallbackImage}  // API theke image na ashলে fallback
-          alt={name || 'Product image'}
+          src={productImage}
+          alt={title || "Product Image"}
           fill
           className="object-cover rounded-lg"
         />
       </div>
 
       {/* Category */}
-      {category && (
-        <p className="text-xs text-[#20B526] font-medium mb-1 capitalize">
-          {category}
-        </p>
-      )}
+      <p className="text-xs text-[#20B526] font-medium mb-1 capitalize">
+        {category}
+      </p>
 
-      {/* Name */}
+      {/* Title */}
       <h2 className="text-base font-semibold text-[#1A1A1A] mb-2 line-clamp-2">
-        {name}
+        {title}
       </h2>
 
       {/* Price + Button */}
@@ -36,6 +48,7 @@ const ProductCart = ({ product }) => {
         <span className="text-lg font-bold text-[#20B526]">
           ${Number(price).toFixed(2)}
         </span>
+
         <button className="px-3 py-1.5 text-sm rounded-full bg-[#20B526] text-white hover:bg-[#17941E]">
           Add to Cart
         </button>

@@ -19,10 +19,10 @@ const featuredProducts = [
 
 const FeaturedProducts = () => {
   return (
-    <section id="featuredproducts" className="py-20">
-      <div className="container mx-auto">
+    <section id="featuredproducts" className="py-12 md:py-20">
+      <div className="container mx-auto px-4 md:px-0">
 
-        <h2 className="text-popins font-semibold text-[40px] text-center mb-12">
+        <h2 className="text-popins font-semibold text-2xl sm:text-3xl md:text-4xl text-center mb-8 md:mb-12">
           Featured Products
         </h2>
 

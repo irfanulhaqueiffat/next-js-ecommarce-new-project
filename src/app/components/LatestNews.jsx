@@ -30,12 +30,12 @@ const newsData = [
 
 const LatestNews = () => {
   return (
-    <section id="latestnews" className="pt-[250px]">
-      <div className="container mx-auto ">
+    <section id="latestnews" className="pt-20 md:pt-[250px]">
+      <div className="container mx-auto px-4 md:px-0">
 
         {/* Heading */}
-        <div className="mb-12">
-          <h2 className="text-popins font-semibold text-[40px] text-center">
+        <div className="mb-8 md:mb-12">
+          <h2 className="text-popins font-semibold text-2xl sm:text-3xl md:text-4xl text-center">
             Latest News
           </h2>
         </div>

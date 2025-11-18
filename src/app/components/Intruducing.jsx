@@ -46,15 +46,15 @@ const Intruducing = () => {
   const visibleProducts = filteredProducts.slice(0, 6)
 
   return (
-    <section id="intruduce" className="bg-[#EDF2EE] py-25">
-      <div className="container mx-auto">
+    <section id="intruduce" className="bg-[#EDF2EE] py-12 md:py-25">
+      <div className="container mx-auto px-4 md:px-0">
 
-        <h1 className="flex justify-center items-center text-4xl font-bold">
+        <h1 className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl font-bold text-center">
           Introducing Our Products
         </h1>
 
         {/* 🔥 Dynamic Filter Menu */}
-        <div className="flex justify-center flex-wrap gap-4 mt-8 mb-10">
+        <div className="flex justify-center flex-wrap gap-2 md:gap-4 mt-6 md:mt-8 mb-8 md:mb-10">
           
           {/* All button */}
           <button

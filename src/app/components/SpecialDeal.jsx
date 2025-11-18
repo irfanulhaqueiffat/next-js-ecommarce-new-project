@@ -33,8 +33,7 @@ const SpecialDeal = () => {
 
   return (
     <section className="w-full py-10 bg-[#F5F9F5]">
-      <div className="container mx-auto bg-white rounded-xl p-6 md:p-10 shadow-md 
-                      flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="container mx-auto px-4 md:px-0 bg-white rounded-xl p-4 md:p-6 lg:p-10 shadow-md flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
 
         {/* Left Image */}
         <div className="relative w-full md:w-1/3 h-48 md:h-72">

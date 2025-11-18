@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Navbar from './components/Navbar'
 import Banner from './components/Banner'
 import Hero from './components/Hero'
 
@@ -11,7 +10,7 @@ import SpecialDeal from './components/SpecialDeal'
 import FeaturedProducts from './components/FeaturedProducts'
 import Clients from './components/clients'
 import LatestNews from './components/LatestNews'
-
+import FooterHead from './components/FooterHead'
 
 
 const page = () => {
@@ -25,6 +24,7 @@ const page = () => {
     <FeaturedProducts/>
     <Clients/>
     <LatestNews/>
+    <FooterHead/>
   
 
     
