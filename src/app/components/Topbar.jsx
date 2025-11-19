@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoChevronDownSharp } from "react-icons/io5";
@@ -58,8 +59,8 @@ const Topbar = () => {
 
           {/* Login / Register */}
           <div className="flex items-center gap-4 text-sm font-medium">
-            <button className="hover:text-black transition">Login</button>
-            <button className="hover:text-black transition">Register</button>
+            <button className="hover:text-black transition"><Link href='/Login'>Login</Link></button>
+            <button className="hover:text-black transition"><Link href='/Registration'>Registar</Link></button>
           </div>
 
         </div>

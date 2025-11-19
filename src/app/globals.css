@@ -8,6 +8,9 @@
   width: 1320px;
   margin:auto;
 }
+.breadcrumbs{
+  background-image:url('../../public/images/Breadcrumbs\(1\).png');
+}
 
 
 

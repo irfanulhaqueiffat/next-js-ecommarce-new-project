@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaBars } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -50,7 +51,7 @@ const Bottom = () => {
               </select>
 
               {/* NORMAL MENU ITEMS */}
-              <p className="text-gray-800 cursor-pointer text-sm">About Us</p>
+              <p className="text-gray-800 cursor-pointer text-sm"><Link href='/About'>About us</Link></p>
               <p className="text-gray-800 cursor-pointer text-sm">Contact</p>
             </div>
 
