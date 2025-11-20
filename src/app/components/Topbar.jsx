@@ -1,11 +1,38 @@
+'use client';
+
 import Link from "next/link";
-import React from "react";
-import { IoLocationOutline } from "react-icons/io5";
-import { IoChevronDownSharp } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { IoLocationOutline, IoChevronDownSharp } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 const Topbar = () => {
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check token on component load
+  useEffect(() => {
+    const checkLogin = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+    checkLogin();
+    window.addEventListener("loginStateChange", checkLogin);
+    return () => {
+      window.removeEventListener("loginStateChange", checkLogin);
+    };
+  }, []);
+
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    document.cookie = "token=; Max-Age=0; path=/;";
+    setIsLoggedIn(false);
+    window.dispatchEvent(new Event("loginStateChange"));
+    router.push("/login");
+  };
+
   return (
-    <section id="topbar" className="py-3 border-b border-gray-300 ">
+    <section id="topbar" className="py-3 border-b border-gray-300">
       <div className="container mx-auto px-4 text-[#666666] flex flex-col sm:flex-row justify-between items-center gap-3">
 
         {/* Left: Location */}
@@ -30,8 +57,6 @@ const Topbar = () => {
                 <option>English</option>
                 <option>Bangla</option>
               </select>
-
-              {/* Small Icon */}
               <IoChevronDownSharp
                 size={12}
                 className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500"
@@ -47,8 +72,6 @@ const Topbar = () => {
                 <option>Bangladesh</option>
                 <option>India</option>
               </select>
-
-              {/* Small Icon */}
               <IoChevronDownSharp
                 size={12}
                 className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500"
@@ -57,10 +80,28 @@ const Topbar = () => {
 
           </div>
 
-          {/* Login / Register */}
+          {/* Login / Register OR Logout */}
           <div className="flex items-center gap-4 text-sm font-medium">
-            <button className="hover:text-black transition"><Link href='/Login'>Login</Link></button>
-            <button className="hover:text-black transition"><Link href='/Registration'>Registar</Link></button>
+
+            {!isLoggedIn ? (
+              <>
+                <button className="hover:text-black transition">
+                  <Link href="/Login">Login</Link>
+                </button>
+
+                <button className="hover:text-black transition">
+                  <Link href="/Registration">Register</Link>
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleLogout}
+                className="hover:text-red-600 text-red-500 transition"
+              >
+                Logout
+              </button>
+            )}
+
           </div>
 
         </div>

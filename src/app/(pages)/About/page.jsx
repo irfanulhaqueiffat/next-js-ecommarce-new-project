@@ -6,6 +6,12 @@ import pic1 from '../../../../public/images/About Us.png'
 import pic2 from '../../../../public/images/About ME.png'
 import AboutDeliver from '@/app/components/Aboutdeliver';
 import AboutUs from '@/app/components/Aboutus';
+import AboutTrust from '@/app/components/AboutTrust';
+import AbouTteam from '@/app/components/AbouTteam';
+import ClientTestimonis from '@/app/components/ClientTestimonis';
+import AboutBottom from '@/app/components/AboutBottom';
+import FooterHead from '../../components/FooterHead'
+
 
 const page = () => {
   return (
@@ -23,7 +29,15 @@ const page = () => {
 
 </div>
 <AboutUs/>
+<AboutTrust/>
   <AboutDeliver/>
+  <AbouTteam/>
+  <ClientTestimonis/>
+  <AboutBottom/>
+   <FooterHead/>
+    
+  
+
 
 
 

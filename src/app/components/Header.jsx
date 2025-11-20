@@ -4,6 +4,7 @@ import logo from "../../../public/images/Logo.png";
 import { SlHandbag } from "react-icons/sl";
 import { CiHeart } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
 
           {/* Logo */}
           <div className="logo">
-            <Image src={logo} alt="Logo" width={150} height={150} />
+           <Link href='/' ><Image src={logo} alt="Logo" width={150} height={150} /></Link>
           </div>
 
           {/* Menu Items + Search */}

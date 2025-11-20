@@ -14,7 +14,7 @@ const Bottom = () => {
             <div className="menuItems flex items-center gap-6">
               
               {/* ALL CATEGORY BUTTON */}
-              <div className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full cursor-pointer">
+              <div className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full cursor-pointer hover:bg-green-700 transition">
                 <FaBars className="text-white text-lg" />
                 <select className="bg-transparent outline-none text-white text-sm cursor-pointer">
                   <option>All Categories</option>
@@ -25,40 +25,63 @@ const Bottom = () => {
                 </select>
               </div>
 
-              {/* SMALLER SELECT MENUS */}
-              <select className="bg-transparent border border-gray-300 rounded-md py-1 px-2 text-sm text-gray-700 cursor-pointer">
-                <option>Home</option>
-                <option>Home 1</option>
-                <option>Home 2</option>
-              </select>
+              {/* NAV LINKS WITH HOVER EFFECT */}
+              <Link
+                href="/"
+                className="text-gray-800 cursor-pointer hover:text-green-600 transition"
+              >
+                Home
+              </Link>
 
-              <select className="bg-transparent border border-gray-300 rounded-md py-1 px-2 text-sm text-gray-700 cursor-pointer">
-                <option>Shop</option>
-                <option>Home 1</option>
-                <option>Home 2</option>
-              </select>
+              <Link
+                href="/Shop"
+                className="text-gray-800 cursor-pointer hover:text-green-600 transition"
+              >
+                Shop
+              </Link>
 
-              <select className="bg-transparent border border-gray-300 rounded-md py-1 px-2 text-sm text-gray-700 cursor-pointer">
-                <option>Pages</option>
-                <option>Home 1</option>
-                <option>Home 2</option>
-              </select>
+              <Link
+                href="/"
+                className="text-gray-800 cursor-pointer hover:text-green-600 transition"
+              >
+                Pages
+              </Link>
 
-              <select className="bg-transparent border border-gray-300 rounded-md py-1 px-2 text-sm text-gray-700 cursor-pointer">
-                <option>Blog</option>
-                <option>Home 1</option>
-                <option>Home 2</option>
-              </select>
+              <Link
+                href="/Blogs"
+                className="text-gray-800 cursor-pointer hover:text-green-600 transition"
+              >
+                Blogs
+              </Link>
 
-              {/* NORMAL MENU ITEMS */}
-              <p className="text-gray-800 cursor-pointer text-sm"><Link href='/About'>About us</Link></p>
-              <p className="text-gray-800 cursor-pointer text-sm">Contact</p>
+              <Link
+                href="/About"
+                className="text-gray-800 cursor-pointer text-sm hover:text-green-600 transition"
+              >
+                About us
+              </Link>
+
+              <Link
+                href="/Contacs"
+                className="text-gray-800 cursor-pointer text-sm hover:text-green-600 transition"
+              >
+                Contacs
+              </Link>
+              <Link
+                href="/Dashbord"
+                className="text-gray-800 cursor-pointer text-sm hover:text-green-600 transition"
+              >
+                Dashboard
+              </Link>
+
             </div>
 
             {/* RIGHT CONTACT AREA */}
             <div className="contact flex items-center gap-2">
               <FaPhoneAlt className="text-green-700" />
-              <span className="text-gray-800 font-medium">+8801819575439</span>
+              <span className="text-gray-800 font-medium hover:text-green-600 transition cursor-pointer">
+                +8801819575439
+              </span>
             </div>
 
           </div>

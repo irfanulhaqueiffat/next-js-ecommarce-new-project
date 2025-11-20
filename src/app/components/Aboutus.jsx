@@ -1,5 +1,5 @@
 import React from "react";
-import farmerImg from "../../../public/images/Image(1).png";
+import farmerImg from "../../../public/images/amoutus.png";
 
 const AboutUs = () => {
   return (

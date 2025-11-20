@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
-import deliveryImg  from '../../../public/images/deliver.png'; // Replace with your actual image import
+import deliveryImg  from '../../../public/images/deliver.png'; 
 
 const AboutDeliver = () => {
   return (
@@ -40,7 +40,7 @@ const AboutDeliver = () => {
         {/* Right Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src={ deliveryImg}
+            src={deliveryImg}
             alt="Delivery person with groceries"
             className="max-w-sm md:max-w-md object-contain"
           />

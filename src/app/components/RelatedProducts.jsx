@@ -36,7 +36,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto px-4 md:px-0">
 
         <h2 className="text-popins font-semibold text-2xl sm:text-3xl md:text-4xl text-center mb-8 md:mb-12">
-          Featured Products
+          Related Products
         </h2>
 
         {loading && <p className="text-center text-gray-500">Loading products...</p>}

@@ -8,6 +8,11 @@ import Img5 from '../../../public/images/insta5.png'
 import Img6 from '../../../public/images/insta6.png'
 import Img7 from '../../../public/images/insta7.png'
 import Img8 from '../../../public/images/insta8.png'
+import applpay from '../../../public/images/ApplePay.png'
+import visa from '../../../public/images/Method=Visa.png'
+import mastercard from '../../../public/images/Method=Mastercard.png'
+import discover from '../../../public/images/Discover.png'
+import Payment from '../../../public/images/Cart.png'
 
 const Footer = () => {
   return (
@@ -124,22 +129,18 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-        <div className="flex space-x-4 text-xl">
-          <i className="fa-brands fa-facebook cursor-pointer"></i>
-          <i className="fa-brands fa-twitter cursor-pointer"></i>
-          <i className="fa-brands fa-instagram cursor-pointer"></i>
-          <i className="fa-brands fa-pinterest cursor-pointer"></i>
-        </div>
 
-        <p className="text-sm opacity-80 mt-4 md:mt-0">
+      
+          <p className="text-sm opacity-80 mt-4 md:mt-0">
           Shopery eCommerce © 2021. All Rights Reserved
         </p>
 
         <div className="flex space-x-3 mt-4 md:mt-0">
-          <img src="/payments/apple-pay.png" alt="" className="h-6" />
-          <img src="/payments/visa.png" alt="" className="h-6" />
-          <img src="/payments/mastercard.png" alt="" className="h-6" />
-          <img src="/payments/secure.png" alt="" className="h-6" />
+          <Image src={applpay} alt="applpay" height={30} width={40} />
+          <Image src={visa} alt="visa"  height={30} width={30}/>
+          <Image src={mastercard} alt="mastercard" height={30} width={30} />
+          <Image src={discover} alt="discover"  height={30} width={30}/>
+          <Image src={Payment} alt="payment" height={30} width={30} />
         </div>
       </div>
     </footer>
