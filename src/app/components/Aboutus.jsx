@@ -1,6 +1,6 @@
 import React from "react";
 import farmerImg from "../../../public/images/amoutus.png";
-
+import Image from "next/image";
 const AboutUs = () => {
   return (
     <section className="py-16 bg-white">
@@ -21,7 +21,7 @@ const AboutUs = () => {
 
         {/* Right Image */}
         <div className="md:w-1/2 flex justify-center">
-          <img
+          <Image
             src={farmerImg}
             width={716}
             height={492}

@@ -10,36 +10,33 @@ import { FaInstagram } from "react-icons/fa6";
 const LoginPage = () => {
   const router = useRouter();
 
-  const [username, setUsername] = useState("");    
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [username, setUsername]   = useState("");
+  const [password, setPassword]   = useState("");
+  const [loading, setLoading]     = useState(false);
 
-  const [error, setError] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [error, setError]         = useState(null);
+  const [userData, setUserData]   = useState(null);
 
-  // Check if user already logged in
+  // Check login state
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const storedToken    = localStorage.getItem("token");
+    const storedUsername = localStorage.getItem("username");
 
-    const token = localStorage.getItem("token");
-    if (token) {
-      setUserData({ username: "LoggedUser" }); 
+    if (storedToken && storedUsername) {
+      setUserData({ username: storedUsername });
     }
   }, []);
 
   const handleLogout = () => {
-    if (typeof window === "undefined") return;
-
     localStorage.removeItem("token");
-    document.cookie = "token=; Max-Age=0; path=/;";
+    localStorage.removeItem("username");
     setUserData(null);
-    router.push("/Login"); // route er naam jeta use korso oita diye dio (Login / login)
+    router.push("/Login");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // simple validation
     if (!username || !password) {
       setError("Username and password required");
       return;
@@ -47,49 +44,73 @@ const LoginPage = () => {
 
     setLoading(true);
     setError(null);
-    setUserData(null);
 
     try {
-      // Use credentials: 'include' to allow cookies to be set by the API
-      const res = await fetch("https://dummyjson.com/auth/login", {
+      // 🔥 NEW: FreeAPI Login
+      const res = await fetch("https://api.freeapi.app/api/v1/users/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+        },
         body: JSON.stringify({
-          username,          // e.g. emilys
-          password,          // e.g. emilyspass
-          expiresInMins: 30,
+          username,      // e.g. doejohn
+          password,      // e.g. test@123
         }),
-        credentials: "include", // allow cross-origin cookies
       });
 
-      if (!res.ok) {
-        let errMsg = "Login failed";
-        try {
-          const errData = await res.json();
-          if (errData?.message) errMsg = errData.message;
-        } catch (_) {}
-        throw new Error(errMsg);
+      const data = await res.json().catch(() => null);
+      console.log("LOGIN RESPONSE:", res.status, data);
+
+      if (!res.ok || data?.success === false) {
+          const data = await res.json().catch(() => null);
+          console.log("LOGIN RESPONSE:", res.status, data);
+
+          if (!res.ok || data?.success === false) {
+            const msg =
+              data?.message ||
+              data?.error ||
+              data?.errors?.[0]?.msg ||
+              "Login failed. Please try again.";
+
+            if (msg.toLowerCase().includes("invalid")) {
+              throw new Error("Incorrect username or password.");
+            }
+
+            throw new Error(msg);
+          }
+
+          // Check for token and user info
+          if (!data?.data?.access_token || !data?.data?.user?.username) {
+            setError("Login response is missing token or user info.");
+            setLoading(false);
+            return;
+          }
+
+          const auth = data.data;
+          localStorage.setItem("token", auth.access_token);
+          localStorage.setItem("username", auth.user.username);
+          setUserData({ username: auth.user.username });
+          router.push("/");
+        throw new Error(msg);
       }
 
-      const data = await res.json();
-      console.log("LOGIN SUCCESS:", data);
-      setUserData(data);
+      // Expected: data.data = { access_token, refresh_token, user: {...} }
+      const auth = data.data;
 
-      // Store token and username, and set access token as cookie for subsequent requests
-      if (typeof window !== "undefined" && data?.token) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username || username);
-        // Set access token as cookie (for API requests)
-        document.cookie = `access_token=${data.token}; path=/; max-age=${30 * 60}; samesite=strict`;
-        window.dispatchEvent(new Event("loginStateChange"));
+      if (auth?.access_token && auth?.user?.username) {
+        localStorage.setItem("token", auth.access_token);
+        localStorage.setItem("username", auth.user.username);
+        setUserData({ username: auth.user.username });
+      } else {
+        throw new Error("Login response is missing token or user info.");
       }
 
-      // 👉 Navigate to HOME after successful login
       router.push("/");
 
     } catch (err) {
       console.error(err);
-      setError(err.message || "Something went wrong while calling API");
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -126,7 +147,7 @@ const LoginPage = () => {
                 </p>
               )}
 
-              {/* If logged in show logout button */}
+              {/* If logged in */}
               {userData ? (
                 <div className="text-center">
                   <p className="mb-3 text-green-600">
@@ -144,7 +165,7 @@ const LoginPage = () => {
                 <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
                   <input
                     type="text"
-                    placeholder="Username (e.g. emilys)"
+                    placeholder="Username (e.g. doejohn)"
                     className="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -152,7 +173,7 @@ const LoginPage = () => {
 
                   <input
                     type="password"
-                    placeholder="Password (e.g. emilyspass)"
+                    placeholder="Password (e.g. test@123)"
                     className="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -183,10 +204,11 @@ const LoginPage = () => {
           {/* Newsletter Section */}
           <footer className="bg-gray-50 py-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h3 className="font-semibold text-lg mb-2">Subscribe our Newsletter</h3>
+              <h3 className="font-semibold text-lg mb-2">
+                Subscribe our Newsletter
+              </h3>
               <p className="text-gray-500 text-sm mb-4">
                 Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
-                Phasellus imperdiet elit eu magna.
               </p>
 
               <div className="flex justify-center space-x-4 mt-6 text-gray-500">

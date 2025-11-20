@@ -39,7 +39,7 @@ const AboutDeliver = () => {
 
         {/* Right Image */}
         <div className="md:w-1/2 flex justify-center">
-          <img
+          <Image
             src={deliveryImg}
             alt="Delivery person with groceries"
             className="max-w-sm md:max-w-md object-contain"

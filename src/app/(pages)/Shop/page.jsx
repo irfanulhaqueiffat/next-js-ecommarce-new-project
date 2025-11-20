@@ -111,14 +111,14 @@ const page = () => {
 
   return (
     <>
-     <section className="py-10 md:py-14 bg-white">
+     <section className="py-10 md:py-14 bg-green-700">
         {/* Breadcrumb */}
         <div className="breadcrumbs flex items-center text-sm py-12 text-gray-600 mt-6 ml-8 space-x-2">
           <Link href="/" className="flex items-center text-gray-500 hover:text-green-600 transition">
             <FaHome className="mr-1 ml-[300px]" />
             Home
           </Link>
-          <span className="text-gray-400">/</span>
+          <span className="text-gray-300">/</span>
           <Link href="/" className="text-gray-500 hover:text-green-600 transition">
             Categories
           </Link>
@@ -128,9 +128,9 @@ const page = () => {
           </Link>
         </div>
         
-        <div className="container mx-auto px-4 text-white">
+        <div className="container mx-auto px-4  text-white mt-10">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mt-10 gap-4 mb-6">
                       <button
                       onClick={() => setShowFilter(!showFilter)}
                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#20B526] text-sm font-medium w-max transition"
@@ -155,7 +155,7 @@ const page = () => {
           {/* Layout */}
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Sidebar */}
-            <aside className="w-full lg:w-1/4 bg-[#050505] border border-[#222] rounded-2xl p-4 md:p-5 space-y-6">
+            <aside className="w-full lg:w-1/4 bg-green-500 border border-[#222] rounded-2xl p-4 md:p-5 space-y-6">
               {/* Categories */}
               <div>
                 <h3 className="text-sm font-semibold mb-3">All Categories</h3>
@@ -279,46 +279,49 @@ const page = () => {
                     ))}
                   </div>
 
+                  {/*  Pagination */}
                   {/* ✅ Pagination */}
-                  <div className="flex justify-center items-center gap-2 mt-10">
-                    {/* Prev Button */}
-                    <button
-                      className="px-4 py-2 bg-gray-800 rounded-md text-gray-300 hover:bg-green-600 hover:text-white transition disabled:opacity-30"
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage((p) => p - 1)}
-                    >
-                      Prev
-                    </button>
+<div className="flex justify-center items-center gap-3 mt-7">
+  {/* Prev Button */}
+  <button
+    className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-xs text-gray-300 hover:bg-green-600 hover:text-white transition disabled:opacity-30"
+    disabled={currentPage === 1}
+    onClick={() => setCurrentPage((p) => p - 1)}
+  >
+    &lt;
+  </button>
 
-                    {/* Page Numbers */}
-                    {Array.from({ length: totalPages }).map((_, i) => {
-                      const pageNum = i + 1
-                      const isActive = currentPage === pageNum
+  {/* Page Numbers */}
+  {Array.from({ length: totalPages }).map((_, i) => {
+    const pageNum = i + 1
+    const isActive = currentPage === pageNum
 
-                      return (
-                        <button
-                          key={pageNum}
-                          onClick={() => setCurrentPage(pageNum)}
-                          className={`px-4 py-2 rounded-md text-sm transition ${
-                            isActive
-                              ? 'bg-green-600 text-white'
-                              : 'bg-gray-800 text-gray-300 hover:bg-green-600 hover:text-white'
-                          }`}
-                        >
-                          {pageNum}
-                        </button>
-                      )
-                    })}
+    return (
+      <button
+        key={pageNum}
+        onClick={() => setCurrentPage(pageNum)}
+        className={`w-10 h-10 flex items-center justify-center rounded-full text-sm transition
+          ${
+            isActive
+              ? 'bg-green-600 text-white'
+              : 'bg-gray-800 text-gray-300 hover:bg-green-600 hover:text-white'
+          }`}
+      >
+        {pageNum}
+      </button>
+    )
+  })}
 
-                    {/* Next Button */}
-                    <button
-                      className="px-4 py-2 bg-gray-800 rounded-md text-gray-300 hover:bg.green-600 hover:text-white transition disabled:opacity-30"
-                      disabled={currentPage === totalPages}
-                      onClick={() => setCurrentPage((p) => p + 1)}
-                    >
-                      Next
-                    </button>
-                  </div>
+  {/* Next Button */}
+  <button
+    className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-xs text-gray-300 hover:bg-green-600 hover:text-white transition disabled:opacity-30"
+    disabled={currentPage === totalPages}
+    onClick={() => setCurrentPage((p) => p + 1)}
+  >
+    &gt;
+  </button>
+</div>
+
                 </>
               )}
             </main>

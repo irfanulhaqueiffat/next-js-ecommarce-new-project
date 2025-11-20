@@ -101,7 +101,7 @@ const BlogDetail = ({ id }) => {
   return (
     <section className="bg-white pb-20">
       {/* Breadcrumb */}
-      <div className="breadcrumbs flex items-center text-sm py-10 text-gray-600 mt-6 ml-8 space-x-2">
+      <div className="breadcrumbs flex items-center text-sm py-10 text-gray-600 mt-7  space-x-2">
         <Link href="/" className="flex items-center text-gray-500 hover:text-green-600 transition">
           <FaHome className="mr-1 ml-[300px]" />
           Home

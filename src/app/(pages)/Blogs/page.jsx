@@ -10,6 +10,11 @@ import {
   FaPinterestP,
   FaInstagram,
 } from 'react-icons/fa';
+import b1 from '../../../../public/images/b5.png';
+import b2 from '../../../../public/images/b2.png';
+import b3 from '../../../../public/images/b3.png';
+import b4 from '../../../../public/images/b4.png';
+import b5 from '../../../../public/images/b5.png';
 
 export default function SingleBlogPage({ params }) {
   const id = params?.id || ''; // dynamic route param: /blogs/[id]
@@ -26,22 +31,45 @@ export default function SingleBlogPage({ params }) {
           Home
         </Link>
         <span className="text-gray-400">/</span>
-        <Link href="/blogs" className="text-gray-500 hover:text-green-600 transition">
+        <Link href="/Blogs" className="text-gray-500 hover:text-green-600 transition">
           Blogs
         </Link>
-        <span className="text-gray-400">/</span>
-        <span className="text-green-600 font-medium">Blog Details</span>
+      </div>
+
+      {/* Top bar: Filter / Sort / Results */}
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mt-10 gap-4 mb-6">
+          {/* Filter button */}
+          <button className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#20B526] text-white text-sm font-medium w-max transition hover:bg-[#19a11f]">
+            Filter
+          </button>
+
+          {/* Sort */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-600">Sort by:</span>
+            <select className="bg-white border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none">
+              <option value="latest">Latest</option>
+              <option value="popular">Most Popular</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+
+          {/* Results */}
+          <p className="text-sm text-gray-600 md:text-right">
+            <span className="font-semibold">52</span> Results Found
+          </p>
+        </div>
       </div>
 
       {/* Full Layout */}
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="container mx-auto px-4 grid mt-10 grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Sidebar */}
         <aside className="space-y-10">
           {/* Search */}
           <input
             type="text"
             placeholder="Search..."
-            className="w-full border px-4 py-3 rounded-lg bg-gray-100 outline-none"
+            className="w-full border px-4 py-3 mt-10 rounded-lg bg-gray-100 outline-none"
           />
 
           {/* Categories */}
@@ -72,90 +100,117 @@ export default function SingleBlogPage({ params }) {
             </ul>
           </div>
 
-          {/* Tags */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Popular Tag</h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                'Healthy',
-                'Low fat',
-                'Vegetarian',
-                'Bread',
-                'Kid foods',
-                'Vitamins',
-                'Snacks',
-                'Tiffin',
-                'Meat',
-                'Launch',
-                'Dinner',
-              ].map((tag, i) => (
-                <span
-                  key={i}
-                  className={
-                    'px-4 py-2 rounded-full text-sm cursor-pointer ' +
-                    (tag === 'Low fat'
-                      ? 'bg-green-500 text-white'
-                      : 'bg-gray-100 text-gray-700')
-                  }
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+       {/* Tags */}
+<div>
+  <h3 className="text-lg font-semibold mb-4">Popular Tag</h3>
+  <div className="flex flex-wrap gap-3">
+    {[
+      'Healthy',
+      'Low fat',
+      'Vegetarian',
+      'Bread',
+      'Kid foods',
+      'Vitamins',
+      'Snacks',
+      'Tiffin',
+      'Meat',
+      'Launch',
+      'Dinner',
+    ].map((tag, i) => (
+      <span
+        key={i}
+        className={
+          'px-4 py-2 rounded-full text-sm cursor-pointer transition-all duration-300 ' +
+          (tag === 'Low fat'
+            ? 'bg-gray-100 text-gray-700 hover:bg-green-500 hover:text-white hover:shadow-md hover:scale-105'
+            : 'bg-gray-100 text-gray-700 hover:bg-green-500 hover:text-white hover:shadow-md hover:scale-105')
+        }
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
 
           {/* Gallery */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Our Gallery</h3>
             <div className="grid grid-cols-3 gap-3">
-              {['/images/filter.png', '/images/blog-detail.png', '/images/comments.png'].map(
-                (img, i) => (
-                  <div
-                    key={i}
-                    className="w-full h-20 bg-gray-200 rounded-xl overflow-hidden"
-                  >
+              {[
+                'https://images.unsplash.com/photo-1542838132-92c53300491e',
+                'https://images.unsplash.com/photo-1466979939565-131c4b39a51c',
+                'https://images.unsplash.com/photo-1562440499-64c9a79c6eab',
+              ].map((img, i) => (
+                <Link key={i} href="https://www.shopify.com/blog" target="_blank">
+                  <div className="w-full h-20 bg-gray-200 rounded-xl overflow-hidden">
                     <Image
                       src={img}
-                      alt="gallery"
+                      alt="eCommerce gallery"
                       width={200}
                       height={200}
                       className="object-cover w-full h-full"
                     />
                   </div>
-                ),
-              )}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Recent Blogs */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Recently Added</h3>
+
             <div className="space-y-6">
-              {[1, 2, 3].map((post) => (
-                <div key={post} className="flex gap-4">
-                  <div className="w-20 h-20 bg-gray-200 rounded-xl" />
-                  <div>
-                    <h4 className="text-gray-800 font-medium">
-                      Curabitur porttitor orci eget neque.
-                    </h4>
-                    <p className="text-gray-400 text-sm">Apr 25, 2021</p>
+              {[
+                {
+                  title: '10 Proven Ways to Increase Online Store Sales',
+                  date: 'Feb 10, 2024',
+                  link: 'https://www.shopify.com/blog/increase-sales',
+                  img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0',
+                },
+                {
+                  title: 'How to Start an Ecommerce Business In 2024',
+                  date: 'Jan 19, 2024',
+                  link: 'https://www.bigcommerce.com/articles/ecommerce/',
+                  img: 'https://images.unsplash.com/photo-1515169067865-5387a1f6c3f2',
+                },
+                {
+                  title: 'Best Marketing Strategies for New Online Stores',
+                  date: 'Dec 28, 2023',
+                  link: 'https://blog.hubspot.com/marketing/ecommerce-strategy',
+                  img: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
+                },
+              ].map((post, i) => (
+                <Link key={i} href={post.link} target="_blank">
+                  <div className="flex gap-4 cursor-pointer">
+                    <Image
+                      src={post.img}
+                      width={90}
+                      height={90}
+                      className="rounded-xl object-cover"
+                      alt="recent blog"
+                    />
+                    <div>
+                      <h4 className="text-gray-800 font-medium">{post.title}</h4>
+                      <p className="text-gray-400 text-sm">{post.date}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </aside>
 
         {/* Blog Content */}
-        <main className="lg:col-span-2">
+        <main className="lg:col-span-2 mt-10">
           {/* MAIN IMAGE */}
           <div className="rounded-2xl overflow-hidden">
             <Image
-              src="/images/blog-detail.png"
-              alt="blog"
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d"
+              alt="ecommerce blog"
               width={900}
               height={500}
-              className="w-full rounded-3xl"
+              className="w-full rounded-3xl object-cover"
             />
           </div>
 
@@ -169,17 +224,17 @@ export default function SingleBlogPage({ params }) {
 
           {/* Title */}
           <h1 className="text-3xl font-bold mt-4 mb-5">
-            Maecenas tempor urna sed quam mollis, a placerat dui fringilla Suspendisse.
+           ipsum dolor sit amet, consectetur adipiscing elit.
           </h1>
 
           {/* Author */}
           <div className="flex items-center gap-4 py-4 border-y my-6">
             <Image
-              src="/images/comments.png"
+              src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1"
               width={50}
               height={50}
               alt="author"
-              className="rounded-full"
+              className="rounded-full object-cover"
             />
             <div>
               <h4 className="font-semibold">Cameron Williamson</h4>
@@ -206,20 +261,60 @@ export default function SingleBlogPage({ params }) {
 
             {/* Inline images */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
-              <Image
-                src="/images/filter.png"
-                width={500}
-                height={400}
-                className="rounded-xl"
-                alt="img"
-              />
-              <Image
-                src="/images/filter.png"
-                width={500}
-                height={400}
-                className="rounded-xl"
-                alt="img"
-              />
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b2}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b3}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b3}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b4}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b2}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
+              <Link href="/Shop" target="_blank">
+                <Image
+                  src={b5}
+                  width={500}
+                  height={400}
+                  className="rounded-xl object-cover"
+                  alt="product details"
+                />
+              </Link>
             </div>
 
             <p>

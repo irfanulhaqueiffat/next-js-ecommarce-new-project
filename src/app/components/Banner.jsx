@@ -3,6 +3,7 @@ import Image from 'next/image'
 import stimg from '../../../public/images/Group 27.png'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import NewSettelarAdd from '../components/NewSettelarAdd'  // <<< ADD THIS
+import Link from 'next/link';
 
 const Banner = () => {
   return (
@@ -29,10 +30,10 @@ const Banner = () => {
               <p className='text-xs sm:text-sm text-black font-normal mb-6 md:mb-8'>
                 Free shipping on all your order. we deliver, you enjoy
               </p>
-
+              <Link href="/Shop">
               <button className='py-2 px-4 sm:py-3 sm:px-6 bg-green-500 rounded-4xl gap-2 flex items-center text-white text-sm sm:text-base hover:bg-green-600 transition'>
-                Shop now <span><FaLongArrowAltRight /></span>
-              </button>
+               Shop now <span><FaLongArrowAltRight /></span> 
+              </button></Link> 
             </div>
           </div>
 

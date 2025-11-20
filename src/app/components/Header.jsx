@@ -8,6 +8,7 @@ import { CiHeart } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useCart } from "./CartContext";
+import { IoIosRemoveCircle } from "react-icons/io";
 
 
 const Header = () => {
@@ -105,7 +106,7 @@ const Header = () => {
                           onClick={() => removeFromCart(item.id)}
                           aria-label={`Remove ${item.title} from cart`}
                         >
-                          Remove
+                          <IoIosRemoveCircle />
                         </button>
                       </li>
                     ))}

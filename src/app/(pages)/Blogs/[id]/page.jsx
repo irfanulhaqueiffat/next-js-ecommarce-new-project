@@ -91,12 +91,12 @@ export default function SingleBlogPage({ params }) {
     );
   }
 
-  const heroImage = blog.image || '/images/blog-detail.png';
+  const heroImage = blog.image || {b3};
 
   return (
-    <section className="bg-white pb-20">
+    <section className="bg-white pb-20 ">
       {/* Breadcrumb */}
-      <div className="breadcrumbs flex items-center text-sm py-10 text-gray-600 mt-6 ml-8 space-x-2">
+      <div className="breadcrumbs flex items-center text-sm py-10 mb-10  text-gray-600  ml-8 space-x-2">
         <Link href="/" className="flex items-center text-gray-500 hover:text-green-600 transition">
           <FaHome className="mr-1 ml-[300px]" />
           Home
@@ -109,14 +109,15 @@ export default function SingleBlogPage({ params }) {
       </div>
 
       {/* Full Layout */}
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="container mx-auto px-4 grid grid-cols-1 mt-10 lg:grid-cols-3 gap-10">
         {/* Sidebar */}
-        <aside className="space-y-10">
+        <aside className="space-y-10  mt-10 ">
           {/* Search */}
           <input
+          className="w-full border px-4 py-3 mt-10 rounded-lg bg-gray-100 outline-none"
             type="text"
             placeholder="Search..."
-            className="w-full border px-4 py-3 rounded-lg bg-gray-100 outline-none"
+           
           />
 
           {/* Categories */}
@@ -221,8 +222,8 @@ export default function SingleBlogPage({ params }) {
         <main className="lg:col-span-2">
           {/* MAIN IMAGE */}
           <div className="rounded-2xl overflow-hidden">
-            {/* use img for remote API URLs; safer without Next domain config */}
-            <img
+            
+            <Image
               src={heroImage}
               alt={blog.title}
               className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-3xl"
@@ -269,14 +270,14 @@ export default function SingleBlogPage({ params }) {
             {/* Inline images (still static – optional: drive from API later) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
               <Image
-                src="/images/filter.png"
+                src={b3}
                 width={500}
                 height={400}
                 className="rounded-xl"
                 alt="img"
               />
               <Image
-                src="/images/filter.png"
+                src={b4}
                 width={500}
                 height={400}
                 className="rounded-xl"

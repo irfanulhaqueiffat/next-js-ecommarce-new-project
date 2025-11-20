@@ -63,7 +63,7 @@ const NewSettelarAdd = () => {
 
         {/* Left Image */}
         <div style={{ width: "280px", height: "100%" }}>
-          <img
+          <Image
             src={Add}
             alt="newsletter"
            width={200}
