@@ -5,6 +5,7 @@ import Topbar from "./components/Topbar";
 import Header from "./components/Header";
 import Bottom from "./components/Bottom";
 import Footer from "./components/Footer";
+import { CartProvider } from "./components/CartContext";
 
 // ...existing code...
 
@@ -26,18 +27,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Topbar/>
-        <Header/>
-        <Bottom/>
-        
-  
-
-        {children}
-        <Footer/>
-    
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <CartProvider>
+          <Topbar/>
+          <Header/>
+          <Bottom/>
+          {children}
+          <Footer/>
+        </CartProvider>
       </body>
     </html>
   );

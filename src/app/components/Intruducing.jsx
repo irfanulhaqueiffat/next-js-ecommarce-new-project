@@ -82,7 +82,7 @@ const Intruducing = () => {
                 }
               `}
             >
-              {cat.replace('-', ' ')}
+              {typeof cat === 'string' ? cat.replace(/[-_]/g, ' ') : String(cat)}
             </button>
           ))}
         </div>
