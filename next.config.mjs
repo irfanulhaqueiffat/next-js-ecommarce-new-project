@@ -3,18 +3,30 @@ const nextConfig = {
   reactCompiler: true,
 
   images: {
-    domains: [
-      "images.unsplash.com",
-      "images.pexels.com",
-      "cdn.shopify.com",
-      "burst.shopifycdn.com",
-      "plus.unsplash.com",
-    ],
-
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.dummyjson.com",
+        hostname: "api.freeapi.app",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
+      {
+        protocol: "https",
+        hostname: "burst.shopifycdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
       },
     ],
   },
