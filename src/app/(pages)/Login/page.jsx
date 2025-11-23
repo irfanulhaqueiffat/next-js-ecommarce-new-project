@@ -80,16 +80,12 @@ const LoginPage = () => {
             throw new Error(msg);
           }
 
-          // Check for token and user info
-          if (!data?.data?.access_token || !data?.data?.user?.username) {
-            setError("Login response is missing token or user info.");
             setLoading(false);
-            return;
-          }
+      
+ 
 
           const auth = data.data;
-          localStorage.setItem("token", auth.access_token);
-          localStorage.setItem("username", auth.user.username);
+          localStorage.setItem("token", auth.accessToken);
           setUserData({ username: auth.user.username });
           router.push("/");
         throw new Error(msg);
@@ -98,10 +94,8 @@ const LoginPage = () => {
       // Expected: data.data = { access_token, refresh_token, user: {...} }
       const auth = data.data;
 
-      if (auth?.access_token && auth?.user?.username) {
-        localStorage.setItem("token", auth.access_token);
-        localStorage.setItem("username", auth.user.username);
-        setUserData({ username: auth.user.username });
+      if (auth?.accessToken ) {
+        localStorage.setItem("token", auth.accessToken);
       } else {
         throw new Error("Login response is missing token or user info.");
       }

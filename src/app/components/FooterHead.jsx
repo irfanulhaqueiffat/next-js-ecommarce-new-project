@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../../../public/images/Logo.png";
+import logo from "../../../public/images/logo.png";
 import { SlHandbag } from "react-icons/sl";
 import { CiHeart } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";

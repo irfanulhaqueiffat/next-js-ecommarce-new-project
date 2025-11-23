@@ -75,17 +75,7 @@ const RegisterPage = () => {
       setSuccess(true);
 
       // 🔥 AUTO LOGIN AFTER SUCCESS
-      const loginRes = await fetch("https://api.freeapi.app/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+     
 
       const loginData = await loginRes.json().catch(() => null);
       console.log("LOGIN RESPONSE:", loginRes.status, loginData);
